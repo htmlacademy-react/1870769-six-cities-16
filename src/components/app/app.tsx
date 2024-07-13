@@ -1,5 +1,4 @@
 import MainPage from '../../pages/main-page/main-page';
-import Footer from '../footer/footer';
 import Header from '../header/header';
 
 type AppScreenProps = {
@@ -11,7 +10,6 @@ function App({offerCardCount}: AppScreenProps): JSX.Element {
     <>
       <Header />
       <MainPage offerCardCount={offerCardCount} />
-      <Footer />
     </>
   );
 }
