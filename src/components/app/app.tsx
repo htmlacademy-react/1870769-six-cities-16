@@ -4,7 +4,7 @@ import Header from '../header/header';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import NotFoundScreen from '../not-found-screen/NotFoundScreen ';
+import NotFoundScreen from '../not-found-screen/NotFoundScreen';
 import LoginPage from '../../pages/login-page/login-page';
 import PrivateRoute from '../private-route/private-route';
 
