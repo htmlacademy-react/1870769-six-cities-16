@@ -1,6 +1,10 @@
+import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
+
 function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
+      <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -130,6 +134,7 @@ function FavoritesPage(): JSX.Element {
           </section>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
