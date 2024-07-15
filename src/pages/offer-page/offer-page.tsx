@@ -1,7 +1,10 @@
+import Header from '../../components/header/header';
+
 function OfferPage(): JSX.Element {
   return (
     <div className="page">
       <main className="page__main page__main--offer">
+        <Header />
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
