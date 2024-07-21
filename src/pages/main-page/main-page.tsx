@@ -1,11 +1,13 @@
 import Header from '../../components/header/header';
-import OfferCard from '../../components/offer-card/offer-card';
+import OfferList from '../../components/offer/offer-list';
+import { Offers } from '../../types/offer-types';
 
 type MainPageProps = {
   offerCardCount: number;
+  offers: Offers;
 }
 
-function MainPage({offerCardCount}: MainPageProps):JSX.Element {
+function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -69,16 +71,7 @@ function MainPage({offerCardCount}: MainPageProps):JSX.Element {
                 </ul>
               </form>
 
-              <div className="cities__places-list places__list tabs__content">
-                {
-                  Array.from(
-                    {length: offerCardCount},
-                    (_, i) => i)
-                    .map((index) => (
-                      <OfferCard key={index} />
-                    ))
-                }
-              </div>
+              <OfferList offers={offers} offerCardCount={offerCardCount} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
