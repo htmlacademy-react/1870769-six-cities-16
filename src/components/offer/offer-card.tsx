@@ -1,23 +1,31 @@
-import { Offer } from '../../types/offer-types';
+import { Link } from 'react-router-dom';
+import { OfferList } from '../../types/offer-list-types';
+import { AppRoute } from '../../const';
 
 type OfferCardProps = {
-  offer: Offer;
-  key: string;
+  offer: OfferList;
 }
 
-function OfferCard({offer, key}: OfferCardProps): JSX.Element {
-  const { isPremium, previewImage, price, rating, title, type } = offer;
+function OfferCard({offer}: OfferCardProps): JSX.Element {
+  const {
+    id,
+    isPremium,
+    previewImage,
+    price,
+    rating,
+    title,
+    type } = offer;
 
   return (
-    <article key={key} className="cities__card place-card">
+    <article key={id} className="cities__card place-card">
       <div className="place-card__mark">
         {isPremium && <span>Premium</span>}
       </div>
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={AppRoute.Offer.replace(':id', id)}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
 
       <div className="place-card__info">
@@ -42,7 +50,7 @@ function OfferCard({offer, key}: OfferCardProps): JSX.Element {
         </div>
 
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

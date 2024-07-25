@@ -6,14 +6,16 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundScreen from '../not-found-screen/NotFoundScreen';
 import LoginPage from '../../pages/login-page/login-page';
 import PrivateRoute from '../private-route/private-route';
-import { Offers } from '../../types/offer-types';
+import { Offers } from '../../types/offer-list-types';
+import { OffersPage } from '../../types/offer-page-types';
 
 type AppScreenProps = {
   offerCardCount: number;
   offers: Offers;
+  offerPage: OffersPage;
 }
 
-function App({offerCardCount, offers}: AppScreenProps): JSX.Element {
+function App({offerCardCount, offers, offerPage}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -26,7 +28,7 @@ function App({offerCardCount, offers}: AppScreenProps): JSX.Element {
             </PrivateRoute>
           }
           />
-          <Route path={AppRoute.Offer} element={<OfferPage />}/>
+          <Route path={AppRoute.Offer} element={<OfferPage offerPage={offerPage} />}/>
           <Route path='*' element={<NotFoundScreen />}/>
         </Route>
       </Routes>
