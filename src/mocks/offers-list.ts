@@ -31,7 +31,7 @@ const offers: Offers = [
     price: 145,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
     city: {
-      name: 'Paris',
+      name: 'Dusseldorf',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -48,13 +48,36 @@ const offers: Offers = [
     rating: 4.8,
   },
   {
+    id: 'ffb99d6b-6767-4150-8327-423s581c91e2ac',
+    title: 'Beautiful & luxurious apartment at great location',
+    type: 'hous',
+    price: 255,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/9.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.834610000000005,
+      longitude: 2.335499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 4.7,
+  },
+  {
     id: 'ffb99d6b-6767-4150-8327-423581c9e2ac',
     title: 'Beautiful & luxurious apartment at great location',
     type: 'house',
     price: 355,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/6.jpg',
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -69,6 +92,52 @@ const offers: Offers = [
     isFavorite: true,
     isPremium: false,
     rating: 4.3,
+  },
+  {
+    id: 'ffb99d6b-6767-4150-8327-423s581c9e2ac',
+    title: 'Beautiful & luxurious apartment at great location',
+    type: 'room',
+    price: 255,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/4.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.834610000000005,
+      longitude: 2.335499,
+      zoom: 16,
+    },
+    isFavorite: true,
+    isPremium: true,
+    rating: 3.3,
+  },
+  {
+    id: 'ffb99d6b-6767-4150-8327-423a581c9e2ac',
+    title: 'Beautiful & luxurious apartment at great apartment',
+    type: 'apartment',
+    price: 255,
+    previewImage: 'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.834610000000005,
+      longitude: 2.335499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 1.3,
   },
   {
     id: '37a6fb08-26c8-4056-83dd-63ad1b805955',
@@ -100,7 +169,7 @@ const offers: Offers = [
     price: 266,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/15.jpg',
     city: {
-      name: 'Paris',
+      name: 'Cologne',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -123,7 +192,7 @@ const offers: Offers = [
     price: 958,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/20.jpg',
     city: {
-      name: 'Paris',
+      name: 'Cologne',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,
@@ -146,7 +215,7 @@ const offers: Offers = [
     price: 160,
     previewImage: 'https://16.design.htmlacademy.pro/static/hotel/12.jpg',
     city: {
-      name: 'Paris',
+      name: 'Brussels',
       location: {
         latitude: 48.85661,
         longitude: 2.351499,

@@ -1,4 +1,4 @@
-import { OfferList } from './offer-list-types';
+import { Offer } from './offer-list-types';
 
 type Host = {
   name: string;
@@ -6,7 +6,7 @@ type Host = {
   isPro: boolean;
 };
 
-export interface OfferPage extends Omit<OfferList, 'previewImage'> {
+export interface OfferPage extends Omit<Offer, 'previewImage'> {
   description: string;
   bedrooms: number;
   goods: string[];
