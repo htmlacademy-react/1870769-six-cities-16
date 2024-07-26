@@ -6,16 +6,18 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import NotFoundScreen from '../not-found-screen/NotFoundScreen';
 import LoginPage from '../../pages/login-page/login-page';
 import PrivateRoute from '../private-route/private-route';
-import { Offers } from '../../types/offer-list-types';
-import { OffersPage } from '../../types/offer-page-types';
+import { Offers } from '../../types/offer-types/offer-list-types';
+import { OffersPage } from '../../types/offer-types/offer-page-types';
+import { OfferComments } from '../../types/offer-types/offer-comment-types';
 
 type AppScreenProps = {
   offerCardCount: number;
   offers: Offers;
   offerPage: OffersPage;
+  offerComment: OfferComments;
 }
 
-function App({offerCardCount, offers, offerPage}: AppScreenProps): JSX.Element {
+function App({offerCardCount, offers, offerPage, offerComment}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -24,11 +26,11 @@ function App({offerCardCount, offers, offerPage}: AppScreenProps): JSX.Element {
           <Route path={AppRoute.Login} element={<LoginPage />}/>
           <Route path={AppRoute.Favorites} element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <FavoritesPage />
+              <FavoritesPage offers={offers} />
             </PrivateRoute>
           }
           />
-          <Route path={AppRoute.Offer} element={<OfferPage offerPage={offerPage} />}/>
+          <Route path={AppRoute.Offer} element={<OfferPage offerPage={offerPage} offerComment={offerComment} />}/>
           <Route path='*' element={<NotFoundScreen />}/>
         </Route>
       </Routes>

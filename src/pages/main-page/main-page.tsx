@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer/offer-list';
-import { Offers } from '../../types/offer-list-types';
+import { Offers } from '../../types/offer-types/offer-list-types';
 import { AppRoute, CITIES } from '../../const';
 import { useState } from 'react';
 

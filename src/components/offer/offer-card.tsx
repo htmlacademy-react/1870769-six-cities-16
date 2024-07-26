@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../types/offer-list-types';
+import { Offer } from '../../types/offer-types/offer-list-types';
 import { AppRoute } from '../../const';
 import { Nullable } from 'vitest';
+import classNames from 'classnames';
 
 type OfferCardProps = {
   offer: Offer;
-  setCurrentOffer: (offer: Nullable<Offer>) => void;
+  isCities: boolean;
+  setCurrentOffer?: (offer: Nullable<Offer>) => void;
 }
 
-function OfferCard({offer, setCurrentOffer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Element {
   const {
     id,
     isPremium,
@@ -19,24 +21,31 @@ function OfferCard({offer, setCurrentOffer}: OfferCardProps): JSX.Element {
     title,
     type } = offer;
 
+  const classesArticle = classNames(['place-card', {'cities__card': isCities}, {'favorites__card': !isCities}]);
+  const classesImageWrapper = classNames(['place-card__image-wrapper', {'cities__image-wrapper': isCities}, {'favorites__image-wrapper': !isCities}]);
+
   function handlerMouseEnter() {
-    setCurrentOffer(offer);
+    if (setCurrentOffer) {
+      setCurrentOffer(offer);
+    }
   }
   function handlerMouseLeave() {
-    setCurrentOffer(null);
+    if (setCurrentOffer) {
+      setCurrentOffer(null);
+    }
   }
 
   return (
     <article
-      key={id}
-      className="cities__card place-card"
+      key={id + 1}
+      className={classesArticle}
       onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}
     >
       <div className="place-card__mark">
         {isPremium && <span>Premium</span>}
       </div>
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={classesImageWrapper}>
         <Link to={AppRoute.Offer.replace(':id', id)}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>

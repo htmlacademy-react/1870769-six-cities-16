@@ -1,5 +1,6 @@
 import { offers } from './offers-list';
-import { OffersPage } from '../types/offer-page-types';
+import { OffersPage } from '../types/offer-types/offer-page-types';
+import { OfferComments } from '../types/offer-types/offer-comment-types';
 
 const generateRandomImages = (count: number): string[] => {
   const images = [];
@@ -78,4 +79,49 @@ const offerPage: OffersPage = offers.map((offer) => {
   };
 });
 
-export { offerPage };
+const offerComment: OfferComments = [
+  {
+    id: 'b67ddafd5-b953-4a30-8c8d-bd083cd6b62a',
+    date: '2021-11-08T14:13:56.569Z',
+    user: {
+      name: 'Mark Kruger',
+      avatarUrl: `https://robohash.org/${Math.random()
+        .toString(36)
+        .substring(7)}.png`,
+      isPro: true,
+    },
+    comment:
+      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    rating: 4,
+  },
+  {
+    id: 'b67ddfd5-b953-4a30-8c8d-bd08s3cd6b62a',
+    date: '2022-04-08T14:13:56.569Z',
+    user: {
+      name: 'Oliver Conner',
+      avatarUrl: `https://robohash.org/${Math.random()
+        .toString(36)
+        .substring(7)}.png`,
+      isPro: false,
+    },
+    comment:
+      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    rating: 2,
+  },
+  {
+    id: 'b67ddfd5-b953-4a30-8c8d-bde083cd6b62a',
+    date: '2023-02-08T14:13:56.569Z',
+    user: {
+      name: 'Karen Grigorian',
+      avatarUrl: `https://robohash.org/${Math.random()
+        .toString(36)
+        .substring(7)}.png`,
+      isPro: true,
+    },
+    comment:
+      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    rating: 5,
+  },
+];
+
+export { offerPage, offerComment };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Offer, Offers } from '../../types/offer-list-types';
+import { Offer, Offers } from '../../types/offer-types/offer-list-types';
 import OfferCard from './offer-card';
 import { Nullable } from 'vitest';
 
@@ -23,7 +23,7 @@ function OfferList({offers, offerCardCount}: OfferCardProps): JSX.Element {
     <div className="cities__places-list places__list tabs__content">
       {
         offers.slice(0, offerCardCount).map((offer) =>
-          <OfferCard offer={offer} key={offer.id} setCurrentOffer={handlerCurrentOffer} />
+          <OfferCard offer={offer} key={offer.id} isCities setCurrentOffer={handlerCurrentOffer} />
         )
       }
     </div>
