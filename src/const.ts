@@ -15,4 +15,7 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export { Setting, AppRoute, AuthorizationStatus };
+const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
+
+export { Setting, AppRoute, AuthorizationStatus, CITIES };
