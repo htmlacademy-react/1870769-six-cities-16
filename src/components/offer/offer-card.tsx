@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import { Offer } from '../../types/offer-types/offer-list-types';
 import { AppRoute } from '../../const';
 import { Nullable } from 'vitest';
@@ -21,8 +21,20 @@ function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Elem
     title,
     type } = offer;
 
-  const classesArticle = classNames(['place-card', {'cities__card': isCities}, {'favorites__card': !isCities}]);
-  const classesImageWrapper = classNames(['place-card__image-wrapper', {'cities__image-wrapper': isCities}, {'favorites__image-wrapper': !isCities}]);
+  const classesArticle = classNames(
+    [
+      'place-card',
+      {'cities__card': isCities},
+      {'favorites__card': !isCities}
+    ]
+  );
+  const classesImageWrapper = classNames(
+    [
+      'place-card__image-wrapper',
+      {'cities__image-wrapper': isCities},
+      {'favorites__image-wrapper': !isCities}
+    ]
+  );
 
   function handlerMouseEnter() {
     if (setCurrentOffer) {
@@ -46,7 +58,7 @@ function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Elem
       </div>
 
       <div className={classesImageWrapper}>
-        <Link to={AppRoute.Offer.replace(':id', id)}>
+        <Link to={generatePath(AppRoute.Offer, {id})}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -76,7 +88,7 @@ function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Elem
         </div>
 
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{title}</Link>
+          <Link to={generatePath(AppRoute.Offer, {id})}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
