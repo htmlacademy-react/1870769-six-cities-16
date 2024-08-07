@@ -43,8 +43,8 @@ function Map({offers, activeOffer, city}: MapTypes):JSX.Element {
         const marker = leaflet
           .marker(
             {
-              lat: offer.city.location.latitude,
-              lng: offer.city.location.longitude
+              lat: offer.location.latitude,
+              lng: offer.location.longitude
             }, {
               icon: (activeOffer && activeOffer.id === offer.id)
                 ? currentCustomIcon
