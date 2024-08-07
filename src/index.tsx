@@ -4,6 +4,7 @@ import App from './components/app/app';
 import { Setting } from './const';
 import { offers } from './mocks/offers-list';
 import { offerComment, offerPage } from './mocks/offer-page';
+import 'leaflet/dist/leaflet.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

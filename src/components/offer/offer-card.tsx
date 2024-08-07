@@ -1,16 +1,15 @@
 import { Link, generatePath } from 'react-router-dom';
 import { Offer } from '../../types/offer-types/offer-list-types';
 import { AppRoute } from '../../const';
-import { Nullable } from 'vitest';
 import classNames from 'classnames';
 
-type OfferCardProps = {
+type OfferCardTypes= {
   offer: Offer;
   isCities: boolean;
-  setCurrentOffer?: (offer: Nullable<Offer>) => void;
+  onHover?: (offer?: Offer | null) => void;
 }
 
-function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, isCities, onHover}: OfferCardTypes): JSX.Element {
   const {
     id,
     isPremium,
@@ -37,13 +36,13 @@ function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Elem
   );
 
   function handlerMouseEnter() {
-    if (setCurrentOffer) {
-      setCurrentOffer(offer);
+    if (onHover) {
+      onHover(offer);
     }
   }
   function handlerMouseLeave() {
-    if (setCurrentOffer) {
-      setCurrentOffer(null);
+    if (onHover) {
+      onHover(null);
     }
   }
 
@@ -51,7 +50,8 @@ function OfferCard({offer, isCities, setCurrentOffer}: OfferCardProps): JSX.Elem
     <article
       key={id + 1}
       className={classesArticle}
-      onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}
+      onMouseEnter={ handlerMouseEnter}
+      onMouseLeave={ handlerMouseLeave}
     >
       <div className="place-card__mark">
         {isPremium && <span>Premium</span>}
