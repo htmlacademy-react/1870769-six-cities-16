@@ -16,7 +16,7 @@ const offers: Offers = [
       },
     },
     location: {
-      latitude: 48.868610000000004,
+      latitude: 48.86861,
       longitude: 2.342499,
       zoom: 16,
     },
@@ -33,14 +33,14 @@ const offers: Offers = [
     city: {
       name: 'Dusseldorf',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 51.227741,
+        longitude: 6.773456,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.858610000000006,
-      longitude: 2.330499,
+      latitude: 51.233334,
+      longitude: 6.783334,
       zoom: 16,
     },
     isFavorite: false,
@@ -56,14 +56,14 @@ const offers: Offers = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3676,
+        longitude: 4.9041,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.335499,
+      latitude: 52.379189,
+      longitude: 4.899431,
       zoom: 16,
     },
     isFavorite: false,
@@ -79,14 +79,14 @@ const offers: Offers = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3676,
+        longitude: 4.9041,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.335499,
+      latitude: 52.370216,
+      longitude: 4.895168,
       zoom: 16,
     },
     isFavorite: true,
@@ -102,14 +102,14 @@ const offers: Offers = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3676,
+        longitude: 4.9041,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.335499,
+      latitude: 52.377956,
+      longitude: 4.89707,
       zoom: 16,
     },
     isFavorite: true,
@@ -125,14 +125,14 @@ const offers: Offers = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.3676,
+        longitude: 4.9041,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.335499,
+      latitude: 52.365556,
+      longitude: 4.911111,
       zoom: 16,
     },
     isFavorite: false,
@@ -154,8 +154,8 @@ const offers: Offers = [
       },
     },
     location: {
-      latitude: 48.85761,
-      longitude: 2.358499,
+      latitude: 48.858844,
+      longitude: 2.294351,
       zoom: 16,
     },
     isFavorite: false,
@@ -171,14 +171,14 @@ const offers: Offers = [
     city: {
       name: 'Cologne',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 50.937531,
+        longitude: 6.960279,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.87561,
-      longitude: 2.375499,
+      latitude: 50.93333,
+      longitude: 6.95,
       zoom: 16,
     },
     isFavorite: true,
@@ -194,14 +194,14 @@ const offers: Offers = [
     city: {
       name: 'Cologne',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 50.937531,
+        longitude: 6.960279,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.87961000000001,
-      longitude: 2.353499,
+      latitude: 50.941278,
+      longitude: 6.958281,
       zoom: 16,
     },
     isFavorite: false,
@@ -217,14 +217,14 @@ const offers: Offers = [
     city: {
       name: 'Brussels',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 50.85045,
+        longitude: 4.34878,
         zoom: 13,
       },
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.364499,
+      latitude: 50.8467,
+      longitude: 4.3499,
       zoom: 16,
     },
     isFavorite: false,

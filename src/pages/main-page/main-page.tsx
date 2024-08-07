@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer/offer-list';
-import { Offers } from '../../types/offer-types/offer-list-types';
+import { Offer, Offers } from '../../types/offer-types/offer-list-types';
 import { AppRoute, CITIES } from '../../const';
 import { useState } from 'react';
+import Map from '../../components/map/map';
 
 type MainPageProps = {
   offerCardCount: number;
@@ -12,11 +13,18 @@ type MainPageProps = {
 
 function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
   const [activeCity, setActiveCity] = useState<string>(CITIES[3]);
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
-
+  const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
   const [isSortingOpen, setIsSortingOpen] = useState<boolean>(false);
+
+  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const activeCityDetails = filteredOffers.length > 0 ? filteredOffers[0].city : null;
+
   const handleSortingClick = () => {
     setIsSortingOpen(!isSortingOpen);
+  };
+
+  const handleOfferHover = (offer?: Offer | null) => {
+    setActiveOffer(offer || null);
   };
 
   return (
@@ -62,11 +70,12 @@ function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-
-              <OfferList offers={filteredOffers} offerCardCount={offerCardCount} />
+              <OfferList offers={filteredOffers} offerCardCount={offerCardCount} onHover={handleOfferHover} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              {activeCityDetails && (
+                <Map offers={filteredOffers} activeOffer={activeOffer} city={activeCityDetails} />
+              )}
             </div>
           </div>
         </div>
