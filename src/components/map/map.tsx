@@ -3,10 +3,11 @@ import { useEffect, useRef } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { City, Offer, Offers } from '../../types/offer-types/offer-list-types';
 import useMap from '../hook/use-map';
+import { OfferPage, OffersPage } from '../../types/offer-types/offer-page-types';
 
 type MapTypes = {
-  offers: Offers;
-  activeOffer: Offer | null;
+  offers: Offers | OffersPage;
+  activeOffer: Offer | null | OfferPage;
   city: City;
 }
 
@@ -31,7 +32,6 @@ function Map({offers, activeOffer, city}: MapTypes):JSX.Element {
     if (map) {
       map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
       markerLayer.current.addTo(map);
-      // markerLayer.current.clearLayers();
     }
   }, [city, map]);
 
@@ -59,7 +59,7 @@ function Map({offers, activeOffer, city}: MapTypes):JSX.Element {
 
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className="cities__map map" ref={mapRef} style={{height: 500}}></section>
   );
 }
 

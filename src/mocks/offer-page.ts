@@ -60,26 +60,21 @@ const avatarUrl = `https://robohash.org/${Math.random()
   .toString(36)
   .substring(7)}.png`;
 
-const offerPage: OffersPage = offers.map((offer) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { previewImage, ...rest } = offer;
+const offerPage: OffersPage = offers.map((offer) => ({
+  ...offer,
+  description: 'A quiet cozy and picturesque place in the heart of the city.',
+  bedrooms: Math.floor(Math.random() * 5) + 1,
+  goods: getRandomGoods(),
+  host: {
+    name: getRandomHostName(),
+    avatarUrl: avatarUrl,
+    isPro: Math.random() > 0.5,
+  },
+  images: generateRandomImages(1 + Math.floor(Math.random() * 5)),
+  maxAdults: Math.floor(Math.random() * 4) + 1,
+}));
 
-  return {
-    ...rest,
-    description: 'A quiet cozy and picturesque place in the heart of the city.',
-    bedrooms: Math.floor(Math.random() * 5) + 1,
-    goods: getRandomGoods(),
-    host: {
-      name: getRandomHostName(),
-      avatarUrl: avatarUrl,
-      isPro: Math.random() > 0.5,
-    },
-    images: generateRandomImages(1 + Math.floor(Math.random() * 5)),
-    maxAdults: Math.floor(Math.random() * 4) + 1,
-  };
-});
-
-const offerComment: OfferComments = [
+const offerComments: OfferComments = [
   {
     id: 'b67ddafd5-b953-4a30-8c8d-bd083cd6b62a',
     date: '2021-11-08T14:13:56.569Z',
@@ -124,4 +119,4 @@ const offerComment: OfferComments = [
   },
 ];
 
-export { offerPage, offerComment };
+export { offerPage, offerComments };

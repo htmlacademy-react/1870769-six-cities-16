@@ -14,10 +14,10 @@ type AppScreenProps = {
   offerCardCount: number;
   offers: Offers;
   offerPage: OffersPage;
-  offerComment: OfferComments;
+  offerComments: OfferComments;
 }
 
-function App({offerCardCount, offers, offerPage, offerComment}: AppScreenProps): JSX.Element {
+function App({offerCardCount, offers, offerPage, offerComments}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +30,7 @@ function App({offerCardCount, offers, offerPage, offerComment}: AppScreenProps):
             </PrivateRoute>
           }
           />
-          <Route path={AppRoute.Offer} element={<OfferPage offerPage={offerPage} offerComment={offerComment} />}/>
+          <Route path={AppRoute.Offer} element={<OfferPage offerPages={offerPage} offerComments={offerComments} />}/>
           <Route path='*' element={<NotFoundScreen />}/>
         </Route>
       </Routes>
