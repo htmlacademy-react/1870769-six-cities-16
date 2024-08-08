@@ -6,7 +6,7 @@ type Host = {
   isPro: boolean;
 };
 
-export interface OfferPage extends Omit<Offer, 'previewImage'> {
+export interface OfferPage extends Offer {
   description: string;
   bedrooms: number;
   goods: string[];

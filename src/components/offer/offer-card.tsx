@@ -1,11 +1,12 @@
 import { Link, generatePath } from 'react-router-dom';
-import { Offer } from '../../types/offer-types/offer-list-types';
-import { AppRoute } from '../../const';
 import classNames from 'classnames';
+import { AppRoute } from '../../const';
+import { Offer } from '../../types/offer-types/offer-list-types';
+import { OfferPage } from '../../types/offer-types/offer-page-types';
 
 type OfferCardTypes= {
-  offer: Offer;
-  isCities: boolean;
+  offer: Offer | OfferPage;
+  isCities?: boolean;
   onHover?: (offer?: Offer | null) => void;
 }
 
@@ -24,14 +25,16 @@ function OfferCard({offer, isCities, onHover}: OfferCardTypes): JSX.Element {
     [
       'place-card',
       {'cities__card': isCities},
-      {'favorites__card': !isCities}
+      {'favorites__card': !isCities},
+      {'near-places__card': isCities === undefined}
     ]
   );
   const classesImageWrapper = classNames(
     [
       'place-card__image-wrapper',
       {'cities__image-wrapper': isCities},
-      {'favorites__image-wrapper': !isCities}
+      {'favorites__image-wrapper': !isCities},
+      {'near-places__image-wrapper': isCities === undefined}
     ]
   );
 
@@ -48,10 +51,10 @@ function OfferCard({offer, isCities, onHover}: OfferCardTypes): JSX.Element {
 
   return (
     <article
-      key={id + 1}
+      key={id}
       className={classesArticle}
-      onMouseEnter={ handlerMouseEnter}
-      onMouseLeave={ handlerMouseLeave}
+      onMouseEnter={handlerMouseEnter}
+      onMouseLeave={handlerMouseLeave}
     >
       <div className="place-card__mark">
         {isPremium && <span>Premium</span>}

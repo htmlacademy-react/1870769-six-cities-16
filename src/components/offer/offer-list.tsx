@@ -1,18 +1,36 @@
 import { Offer, Offers } from '../../types/offer-types/offer-list-types';
+import { OffersPage } from '../../types/offer-types/offer-page-types';
 import OfferCard from './offer-card';
+import classNames from 'classnames';
 
 type OfferCardProps = {
-  offers: Offers;
-  offerCardCount: number;
+  offers: Offers | OffersPage;
+  offerCardCount?: number;
+  isCitiesNear?: boolean;
   onHover?: (offer?: Offer | null) => void;
 }
 
-function OfferList({offers, offerCardCount, onHover}: OfferCardProps): JSX.Element {
+function OfferList({offers, offerCardCount, onHover, isCitiesNear}: OfferCardProps): JSX.Element {
+  const classesOfferList = classNames(
+    [
+      'places__list',
+      'tabs__content',
+      {'near-places__list': isCitiesNear},
+      {'cities__places-list': !isCitiesNear}
+    ]
+  );
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={classesOfferList}>
       {
         offers.slice(0, offerCardCount).map((offer) =>
-          <OfferCard offer={offer} key={offer.id} isCities onHover={onHover} />
+          (
+            <OfferCard
+              offer={offer}
+              key={offer.id}
+              isCities={isCitiesNear ? true : undefined}
+              onHover={onHover}
+            />
+          )
         )
       }
     </div>
