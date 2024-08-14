@@ -1,6 +1,6 @@
 import { Offers } from '../types/offer-types/offer-list-types';
 
-const offers: Offers = [
+const offersMock: Offers = [
   {
     id: 'f641a4cd-06b9-4a1d-8957-3e19fcad7948',
     title: 'Nice, cozy, warm big bed apartment',
@@ -233,4 +233,4 @@ const offers: Offers = [
   },
 ];
 
-export { offers };
+export { offersMock };

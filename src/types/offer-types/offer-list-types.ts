@@ -6,7 +6,7 @@ export type Location = {
   zoom: number;
 };
 
-export type cityName = (typeof CITIES)[number];
+export type CityName = (typeof CITIES)[number];
 
 export type City = {
   name: string;

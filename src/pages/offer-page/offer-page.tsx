@@ -1,23 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import Header from '../../components/header/header';
-import { OffersPage } from '../../types/offer-types/offer-page-types';
-import { AppRoute } from '../../const';
 import CommentList from '../../components/offer/offer-comments/comments-list';
-import { OfferComments } from '../../types/offer-types/offer-comment-types';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer/offer-list';
+
+import { AppRoute } from '../../const';
+
 import { Offer } from '../../types/offer-types/offer-list-types';
 
-type OfferPageTypes = {
-  offerPages: OffersPage;
-  offerComments: OfferComments;
-}
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { setOfferComments, setOfferPages } from '../../store/action';
 
-function OfferPage({offerPages, offerComments}: OfferPageTypes): JSX.Element {
+import { offerPage, offerComments } from '../../mocks/offer-page';
+
+function OfferPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const offerPages = useAppSelector((state) => state.offerPages);
+  const offerPageComments = useAppSelector((state) => state.offerComments);
+
   const { id } = useParams();
   const offer = offerPages.find((item) => item.id === id);
   const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
+
+  useEffect(() => {
+    dispatch(setOfferPages(offerPage));
+    dispatch(setOfferComments(offerComments));
+  }, [dispatch]);
 
   if (!offer) {
     return <div>Offer not found <Link to={AppRoute.Main}>Go back main page</Link></div>;
@@ -143,7 +153,7 @@ function OfferPage({offerPages, offerComments}: OfferPageTypes): JSX.Element {
                 </div>
               </div>
 
-              <CommentList comments={offerComments} />
+              <CommentList comments={offerPageComments} />
             </div>
           </div>
 

@@ -2,7 +2,7 @@ import leaflet, { LayerGroup } from 'leaflet';
 import { useEffect, useRef } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { City, Offer, Offers } from '../../types/offer-types/offer-list-types';
-import useMap from '../hook/use-map';
+import useMap from '../../hook/useMap/use-map';
 import { OfferPage, OffersPage } from '../../types/offer-types/offer-page-types';
 
 type MapTypes = {

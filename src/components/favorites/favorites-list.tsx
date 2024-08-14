@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import OfferCard from '../offer/offer-card';
 import { Offers } from '../../types/offer-types/offer-list-types';
+import { AppRoute } from '../../const';
 
 type FavoritesTypes = {
   favoriteOffers: Partial<Record<string, Offers>>;
@@ -13,9 +15,9 @@ function FavoritesList({favoriteOffers}: FavoritesTypes): JSX.Element {
           <li key={city} className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
-                <a className="locations__item-link" href="#">
+                <Link className="locations__item-link" to={AppRoute.Main}>
                   <span>{city}</span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="favorites__places">
