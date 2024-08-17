@@ -17,3 +17,8 @@ export const setOfferComments = createAction<OfferComments>(
 export const setSortingOption = createAction<SortingOptionValue>(
   'main/setSortingOption'
 );
+
+export const setFavoriteStatus = createAction<{
+  offerId: string | undefined;
+  isFavorite: boolean;
+}>('offer/setFavoriteStatus');

@@ -48,7 +48,7 @@ function OfferPage(): JSX.Element {
     goods,
     host,
     description,
-    isFavorite
+    isFavorite,
   } = offer;
 
   const handleOfferHover = (hoveredOffer?: Offer | null) => {
@@ -84,7 +84,7 @@ function OfferPage(): JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <FavoriteButton isFavorite={isFavorite} pageType />
+                <FavoriteButton isFavorite={isFavorite} pageType offerId={id} />
               </div>
 
               <div className="offer__rating rating">

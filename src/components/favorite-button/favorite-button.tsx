@@ -1,13 +1,22 @@
 import classNames from 'classnames';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { setFavoriteStatus } from '../../store/action';
 
 type FavoriteButtonTypes = {
   isFavorite: boolean;
   pageType?: boolean;
+  offerId: string | undefined;
 }
 
-function FavoriteButton({isFavorite, pageType}: FavoriteButtonTypes): JSX.Element {
+function FavoriteButton({isFavorite, pageType, offerId}: FavoriteButtonTypes): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [favorite, setFavorite] = useState(isFavorite);
+
+  const isAuthorized = useAppSelector((state) => state.isAuthorized);
 
   const buttonClass = classNames([
     'button',
@@ -26,8 +35,15 @@ function FavoriteButton({isFavorite, pageType}: FavoriteButtonTypes): JSX.Elemen
   const iconHeight = pageType === pageType ? 33 : 19;
 
   const handleButtonClick = () => {
+    if(isAuthorized !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+      return;
+    }
+
     const newFavoriteStatus = !favorite;
     setFavorite(newFavoriteStatus);
+
+    dispatch(setFavoriteStatus({ offerId, isFavorite: newFavoriteStatus }));
   };
 
   return (
