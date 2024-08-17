@@ -4,9 +4,10 @@ import {
   setOfferComments,
   setOfferPages,
   setOffers,
+  setSortingOption,
 } from './action';
 
-import { CITIES } from '../const';
+import { CITIES, SortingOptionValue } from '../const';
 
 import { CityName, Offers } from '../types/offer-types/offer-list-types';
 import { OffersPage } from '../types/offer-types/offer-page-types';
@@ -17,6 +18,7 @@ type initialState = {
   offers: Offers;
   offerPages: OffersPage;
   offerComments: OfferComments;
+  sortingOption: SortingOptionValue;
 };
 
 const initialState: initialState = {
@@ -24,6 +26,7 @@ const initialState: initialState = {
   offers: [],
   offerPages: [],
   offerComments: [],
+  sortingOption: SortingOptionValue.Popular,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -39,6 +42,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOfferComments, (state, action) => {
       state.offerComments = action.payload;
+    })
+    .addCase(setSortingOption, (state, acion) => {
+      state.sortingOption = acion.payload;
     });
 });
 

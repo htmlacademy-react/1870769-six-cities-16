@@ -1,3 +1,6 @@
+import { SortingOptionValue } from './const';
+import { Offers } from './types/offer-types/offer-list-types';
+
 function groupBy<T, K extends string | number | symbol>(
   list: T[],
   getKey: (item: T) => K
@@ -39,4 +42,17 @@ function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
-export { groupBy, getTitleForRatingStar, formatDate };
+function sortingOffers(offers: Offers, sortOption: SortingOptionValue): Offers {
+  switch (sortOption) {
+    case SortingOptionValue.PriceLowToHigh:
+      return [...offers].sort((a, b) => a.price - b.price);
+    case SortingOptionValue.PriceHighToLow:
+      return [...offers].sort((a, b) => b.price - a.price);
+    case SortingOptionValue.TopRated:
+      return [...offers].sort((a, b) => b.rating - a.rating);
+    default:
+      return offers;
+  }
+}
+
+export { groupBy, getTitleForRatingStar, formatDate, sortingOffers };
