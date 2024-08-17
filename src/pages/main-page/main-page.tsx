@@ -14,11 +14,7 @@ import { Offer } from '../../types/offer-types/offer-list-types';
 
 import { offersMock } from '../../mocks/offers-list';
 
-type MainPageProps = {
-  offerCardCount: number;
-}
-
-function MainPage({ offerCardCount }: MainPageProps):JSX.Element {
+function MainPage():JSX.Element {
   const dispatch = useAppDispatch();
   const cityName = useAppSelector((state) => state.cityName);
   const offers = useAppSelector((state) => state.offers);
@@ -84,7 +80,7 @@ function MainPage({ offerCardCount }: MainPageProps):JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OfferList offers={filteredOffers} offerCardCount={offerCardCount} onHover={handleOfferHover} />
+              <OfferList offers={filteredOffers} offerCardCount={offers.length} onHover={handleOfferHover} />
             </section>
             <div className="cities__right-section">
               {activeCityDetails && (

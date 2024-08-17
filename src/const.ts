@@ -1,7 +1,3 @@
-const Setting = {
-  offerCardCount: 5,
-} as const;
-
 enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -31,7 +27,6 @@ const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
 export {
-  Setting,
   AppRoute,
   AuthorizationStatus,
   CITIES,

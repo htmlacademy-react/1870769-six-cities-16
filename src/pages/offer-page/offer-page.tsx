@@ -167,7 +167,6 @@ function OfferPage(): JSX.Element {
 
             <OfferList
               offers={filteredOffers}
-              offerCardCount={filteredOffers.length}
               isCitiesNear
               onHover={handleOfferHover}
             />
