@@ -1,8 +1,12 @@
+import { CITIES } from '../../const';
+
 export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
+
+export type CityName = (typeof CITIES)[number];
 
 export type City = {
   name: string;

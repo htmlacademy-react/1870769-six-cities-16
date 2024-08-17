@@ -1,14 +1,12 @@
 import FavoritesList from '../../components/favorites/favorites-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import { useAppSelector } from '../../hook';
 import { Offer, Offers } from '../../types/offer-types/offer-list-types';
 import { groupBy } from '../../utils';
 
-type FavoritesTypes = {
-  offers: Offers;
-};
-
-function FavoritesPage({offers}: FavoritesTypes): JSX.Element {
+function FavoritesPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
   const favoriteOffersByGroup: Record<string, Offers> = groupBy(favoriteOffers, (offer: Offer) => offer.city.name);
 

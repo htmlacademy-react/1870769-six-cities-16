@@ -1,23 +1,37 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import Header from '../../components/header/header';
 import OfferList from '../../components/offer/offer-list';
-import { Offer, Offers } from '../../types/offer-types/offer-list-types';
-import { AppRoute, CITIES } from '../../const';
-import { useState } from 'react';
 import Map from '../../components/map/map';
+
+import { AppRoute, CITIES } from '../../const';
+
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { setCityName, setOffers } from '../../store/action';
+
+import { Offer } from '../../types/offer-types/offer-list-types';
+
+import { offersMock } from '../../mocks/offers-list';
 
 type MainPageProps = {
   offerCardCount: number;
-  offers: Offers;
 }
 
-function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
-  const [activeCity, setActiveCity] = useState<string>(CITIES[3]);
+function MainPage({ offerCardCount }: MainPageProps):JSX.Element {
+  const dispatch = useAppDispatch();
+  const cityName = useAppSelector((state) => state.cityName);
+  const offers = useAppSelector((state) => state.offers);
+
   const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
   const [isSortingOpen, setIsSortingOpen] = useState<boolean>(false);
 
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const filteredOffers = offers.filter((offer) => offer.city.name === cityName);
   const activeCityDetails = filteredOffers.length > 0 ? filteredOffers[0].city : null;
+
+  useEffect(() => {
+    dispatch(setOffers(offersMock));
+  }, [dispatch]);
 
   const handleSortingClick = () => {
     setIsSortingOpen(!isSortingOpen);
@@ -38,9 +52,9 @@ function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
               {CITIES.map((city) => (
                 <li key={city} className="locations__item">
                   <Link
-                    className={`locations__item-link tabs__item ${activeCity === city && 'tabs__item--active'}`}
+                    className={`locations__item-link tabs__item ${cityName === city && 'tabs__item--active'}`}
                     to={AppRoute.Main}
-                    onClick={() => setActiveCity(city)}
+                    onClick={() => dispatch(setCityName(city))}
                   >
                     <span>{city}</span>
                   </Link>
@@ -54,7 +68,7 @@ function MainPage({ offerCardCount, offers }: MainPageProps):JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{filteredOffers.length} places to stay in {activeCity}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {cityName}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0} onClick={handleSortingClick}>

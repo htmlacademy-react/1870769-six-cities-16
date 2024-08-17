@@ -1,4 +1,4 @@
-import { offers } from './offers-list';
+import { offersMock } from './offers-list';
 import { OffersPage } from '../types/offer-types/offer-page-types';
 import { OfferComments } from '../types/offer-types/offer-comment-types';
 
@@ -60,7 +60,7 @@ const avatarUrl = `https://robohash.org/${Math.random()
   .toString(36)
   .substring(7)}.png`;
 
-const offerPage: OffersPage = offers.map((offer) => ({
+const offerPage: OffersPage = offersMock.map((offer) => ({
   ...offer,
   description: 'A quiet cozy and picturesque place in the heart of the city.',
   bedrooms: Math.floor(Math.random() * 5) + 1,

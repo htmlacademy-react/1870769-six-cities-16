@@ -1,10 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import { Setting } from './const';
-import { offers } from './mocks/offers-list';
-import { offerComments, offerPage } from './mocks/offer-page';
+
 import 'leaflet/dist/leaflet.css';
+
+import App from './components/app/app';
+import { store } from './store';
+
+import { Setting } from './const';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,11 +15,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      offerCardCount={Setting.offerCardCount}
-      offers={offers}
-      offerPage={offerPage}
-      offerComments={offerComments}
-    />
+    <Provider store={store}>
+      <App
+        offerCardCount={Setting.offerCardCount}
+      />
+    </Provider>
   </React.StrictMode>
 );
