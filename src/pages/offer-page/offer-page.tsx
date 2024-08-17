@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../hook';
 import { setOfferComments, setOfferPages } from '../../store/action';
 
 import { offerPage, offerComments } from '../../mocks/offer-page';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -83,15 +84,7 @@ function OfferPage(): JSX.Element {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <button
-                  className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`}
-                  type="button"
-                >
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <FavoriteButton isFavorite={isFavorite} pageType />
               </div>
 
               <div className="offer__rating rating">

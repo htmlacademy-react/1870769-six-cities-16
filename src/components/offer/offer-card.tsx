@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/offer-types/offer-list-types';
 import { OfferPage } from '../../types/offer-types/offer-page-types';
+import FavoriteButton from '../favorite-button/favorite-button';
 
 type OfferCardTypes= {
   offer: Offer | OfferPage;
@@ -72,15 +73,7 @@ function OfferCard({offer, isCities, onHover}: OfferCardTypes): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={`place-card__bookmark-button button ${isFavorite && 'place-card__bookmark-button--active'}`}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <FavoriteButton isFavorite={isFavorite} />
         </div>
 
         <div className="place-card__rating rating">
