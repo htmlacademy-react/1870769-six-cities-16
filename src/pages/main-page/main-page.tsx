@@ -5,37 +5,33 @@ import Header from '../../components/header/header';
 import OfferList from '../../components/offer/offer-list';
 import Map from '../../components/map/map';
 
-import { AppRoute, CITIES } from '../../const';
-
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { setCityName, setOffers } from '../../store/action';
 
 import { Offer } from '../../types/offer-types/offer-list-types';
 
 import { offersMock } from '../../mocks/offers-list';
+import SortingOptions from '../../components/sorting-options/sorting-options';
 
-type MainPageProps = {
-  offerCardCount: number;
-}
+import { AppRoute, CITIES } from '../../const';
+import { sortingOffers } from '../../utils';
 
-function MainPage({ offerCardCount }: MainPageProps):JSX.Element {
+function MainPage():JSX.Element {
   const dispatch = useAppDispatch();
   const cityName = useAppSelector((state) => state.cityName);
   const offers = useAppSelector((state) => state.offers);
+  const sortingOption = useAppSelector((state) => state.sortingOption);
 
   const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
-  const [isSortingOpen, setIsSortingOpen] = useState<boolean>(false);
 
   const filteredOffers = offers.filter((offer) => offer.city.name === cityName);
+  const sortedOffers = sortingOffers(filteredOffers, sortingOption);
+
   const activeCityDetails = filteredOffers.length > 0 ? filteredOffers[0].city : null;
 
   useEffect(() => {
     dispatch(setOffers(offersMock));
   }, [dispatch]);
-
-  const handleSortingClick = () => {
-    setIsSortingOpen(!isSortingOpen);
-  };
 
   const handleOfferHover = (offer?: Offer | null) => {
     setActiveOffer(offer || null);
@@ -68,27 +64,17 @@ function MainPage({ offerCardCount }: MainPageProps):JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{filteredOffers.length} places to stay in {cityName}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0} onClick={handleSortingClick}>
-              Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className={`places__options places__options--custom ${isSortingOpen ? 'places__options--opened' : ''}`}>
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <OfferList offers={filteredOffers} offerCardCount={offerCardCount} onHover={handleOfferHover} />
+              <b className="places__found">
+                {sortedOffers.length} place{sortedOffers.length > 1 ? 's' : ''} to stay in {cityName}
+              </b>
+
+              <SortingOptions />
+
+              <OfferList offers={sortedOffers} offerCardCount={offers.length} onHover={handleOfferHover} />
             </section>
             <div className="cities__right-section">
               {activeCityDetails && (
-                <Map offers={filteredOffers} activeOffer={activeOffer} city={activeCityDetails} />
+                <Map offers={sortedOffers} activeOffer={activeOffer} city={activeCityDetails} />
               )}
             </div>
           </div>

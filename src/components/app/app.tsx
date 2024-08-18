@@ -9,16 +9,12 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundScreen from '../not-found-screen/NotFoundScreen';
 
-type AppScreenProps = {
-  offerCardCount: number;
-}
-
-function App({ offerCardCount }: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main}>
-          <Route index element={<MainPage offerCardCount={offerCardCount} />} />
+          <Route index element={<MainPage />} />
           <Route path={AppRoute.Login} element={<LoginPage />}/>
           <Route path={AppRoute.Favorites} element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>

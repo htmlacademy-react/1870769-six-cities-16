@@ -7,8 +7,6 @@ import 'leaflet/dist/leaflet.css';
 import App from './components/app/app';
 import { store } from './store';
 
-import { Setting } from './const';
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -16,9 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        offerCardCount={Setting.offerCardCount}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
