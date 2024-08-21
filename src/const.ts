@@ -48,6 +48,8 @@ const SORTING_OPTIONS = [
   { id: 4, title: 'Top rated first', value: SortingOptionValue.TopRated },
 ] as const;
 
+const AUTH_TOKEN_KEY = 'six-cities';
+
 export {
   AppRoute,
   AuthorizationStatus,
@@ -56,4 +58,5 @@ export {
   URL_MARKER_CURRENT,
   SortingOptionValue,
   SORTING_OPTIONS,
+  AUTH_TOKEN_KEY,
 };
