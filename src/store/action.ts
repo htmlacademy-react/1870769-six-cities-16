@@ -6,6 +6,10 @@ import { AuthorizationStatus, SortingOptionValue } from '../const';
 
 export const setCityName = createAction<CityName>('offer/setCityName');
 
+export const setOffersDataLoadingStatus = createAction<boolean>(
+  'offer/setOffersDataLoadingStatus'
+);
+
 export const loadOffers = createAction<Offers>('offer/loadOffers');
 
 export const loadOfferPages = createAction<OffersPage>('offer/loadOfferPages');
@@ -26,3 +30,5 @@ export const setFavoriteStatus = createAction<{
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );
+
+export const setError = createAction<string | null>('setError');

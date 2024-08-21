@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../../components/header/header';
@@ -6,11 +6,10 @@ import OfferList from '../../components/offer/offer-list';
 import Map from '../../components/map/map';
 
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { setCityName, loadOffers } from '../../store/action';
+import { setCityName } from '../../store/action';
 
 import { Offer } from '../../types/offer-types/offer-list-types';
 
-import { offersMock } from '../../mocks/offers-list';
 import SortingOptions from '../../components/sorting-options/sorting-options';
 
 import { AppRoute, CITIES } from '../../const';
@@ -28,10 +27,6 @@ function MainPage():JSX.Element {
   const sortedOffers = sortingOffers(filteredOffers, sortingOption);
 
   const activeCityDetails = filteredOffers.length > 0 ? filteredOffers[0].city : null;
-
-  useEffect(() => {
-    dispatch(loadOffers(offersMock));
-  }, [dispatch]);
 
   const handleOfferHover = (offer?: Offer | null) => {
     setActiveOffer(offer || null);

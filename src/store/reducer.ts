@@ -7,6 +7,8 @@ import {
   loadOfferPages,
   setSortingOption,
   requireAuthorization,
+  setError,
+  setOffersDataLoadingStatus,
 } from './action';
 
 import { AuthorizationStatus, CITIES, SortingOptionValue } from '../const';
@@ -22,6 +24,8 @@ type initialState = {
   offerComments: OfferComments;
   sortingOption: SortingOptionValue;
   isAuthorized: AuthorizationStatus;
+  isOffersDataLoading: boolean;
+  error: string | null;
 };
 
 const initialState: initialState = {
@@ -31,13 +35,12 @@ const initialState: initialState = {
   offerComments: [],
   sortingOption: SortingOptionValue.Popular,
   isAuthorized: AuthorizationStatus.Unknown,
+  isOffersDataLoading: true,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setCityName, (state, action) => {
-      state.cityName = action.payload;
-    })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
@@ -46,6 +49,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferComments, (state, action) => {
       state.offerComments = action.payload;
+    })
+    .addCase(setCityName, (state, action) => {
+      state.cityName = action.payload;
     })
     .addCase(setSortingOption, (state, acion) => {
       state.sortingOption = acion.payload;
@@ -59,8 +65,14 @@ const reducer = createReducer(initialState, (builder) => {
         offer.isFavorite = action.payload.isFavorite;
       }
     })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.isAuthorized = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

@@ -54,7 +54,9 @@ const SORTING_OPTIONS = [
   { id: 4, title: 'Top rated first', value: SortingOptionValue.TopRated },
 ] as const;
 
-const AUTH_TOKEN_KEY = 'six-cities';
+const AUTH_TOKEN_KEY = 'six-cities-token';
+
+const TIMEOUT_SHOW_ERROR = 2000;
 
 export {
   AppRoute,
@@ -66,4 +68,5 @@ export {
   SORTING_OPTIONS,
   AUTH_TOKEN_KEY,
   APIRoute,
+  TIMEOUT_SHOW_ERROR,
 };
