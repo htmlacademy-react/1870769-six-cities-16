@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
+  loadOffers,
   setCityName,
   setFavoriteStatus,
-  setOfferComments,
-  setOfferPages,
-  setOffers,
+  loadOfferComments,
+  loadOfferPages,
   setSortingOption,
+  requireAuthorization,
 } from './action';
 
 import { AuthorizationStatus, CITIES, SortingOptionValue } from '../const';
@@ -29,7 +30,7 @@ const initialState: initialState = {
   offerPages: [],
   offerComments: [],
   sortingOption: SortingOptionValue.Popular,
-  isAuthorized: AuthorizationStatus.Auth,
+  isAuthorized: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -37,13 +38,13 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setCityName, (state, action) => {
       state.cityName = action.payload;
     })
-    .addCase(setOffers, (state, action) => {
+    .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
-    .addCase(setOfferPages, (state, action) => {
+    .addCase(loadOfferPages, (state, action) => {
       state.offerPages = action.payload;
     })
-    .addCase(setOfferComments, (state, action) => {
+    .addCase(loadOfferComments, (state, action) => {
       state.offerComments = action.payload;
     })
     .addCase(setSortingOption, (state, acion) => {
@@ -57,6 +58,9 @@ const reducer = createReducer(initialState, (builder) => {
       if (offer) {
         offer.isFavorite = action.payload.isFavorite;
       }
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.isAuthorized = action.payload;
     });
 });
 

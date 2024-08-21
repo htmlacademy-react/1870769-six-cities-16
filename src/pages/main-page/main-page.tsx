@@ -6,7 +6,7 @@ import OfferList from '../../components/offer/offer-list';
 import Map from '../../components/map/map';
 
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { setCityName, setOffers } from '../../store/action';
+import { setCityName, loadOffers } from '../../store/action';
 
 import { Offer } from '../../types/offer-types/offer-list-types';
 
@@ -30,7 +30,7 @@ function MainPage():JSX.Element {
   const activeCityDetails = filteredOffers.length > 0 ? filteredOffers[0].city : null;
 
   useEffect(() => {
-    dispatch(setOffers(offersMock));
+    dispatch(loadOffers(offersMock));
   }, [dispatch]);
 
   const handleOfferHover = (offer?: Offer | null) => {

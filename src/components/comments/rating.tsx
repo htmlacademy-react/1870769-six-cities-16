@@ -1,5 +1,5 @@
 import React, { ChangeEvent, JSX } from 'react';
-import { getTitleForRatingStar } from '../../../utils';
+import { getTitleForRatingStar } from '../../utils';
 
 type Rating = {
   rating: number | null;

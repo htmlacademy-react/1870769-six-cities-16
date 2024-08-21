@@ -11,6 +11,19 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum SortingOptionValue {
+  Popular = 'popular',
+  PriceLowToHigh = 'priceLowToHigh',
+  PriceHighToLow = 'priceHighToLow',
+  TopRated = 'topRated',
+}
+
+enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 const CITIES = [
   'Paris',
   'Cologne',
@@ -25,13 +38,6 @@ const URL_MARKER_DEFAULT =
 
 const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
-
-enum SortingOptionValue {
-  Popular = 'popular',
-  PriceLowToHigh = 'priceLowToHigh',
-  PriceHighToLow = 'priceHighToLow',
-  TopRated = 'topRated',
-}
 
 const SORTING_OPTIONS = [
   { id: 1, title: 'Popular', value: SortingOptionValue.Popular },
@@ -59,4 +65,5 @@ export {
   SortingOptionValue,
   SORTING_OPTIONS,
   AUTH_TOKEN_KEY,
+  APIRoute,
 };
