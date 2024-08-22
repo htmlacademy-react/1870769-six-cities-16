@@ -11,6 +11,19 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum SortingOptionValue {
+  Popular = 'popular',
+  PriceLowToHigh = 'priceLowToHigh',
+  PriceHighToLow = 'priceHighToLow',
+  TopRated = 'topRated',
+}
+
+enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 const CITIES = [
   'Paris',
   'Cologne',
@@ -25,13 +38,6 @@ const URL_MARKER_DEFAULT =
 
 const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
-
-enum SortingOptionValue {
-  Popular = 'popular',
-  PriceLowToHigh = 'priceLowToHigh',
-  PriceHighToLow = 'priceHighToLow',
-  TopRated = 'topRated',
-}
 
 const SORTING_OPTIONS = [
   { id: 1, title: 'Popular', value: SortingOptionValue.Popular },
@@ -48,6 +54,10 @@ const SORTING_OPTIONS = [
   { id: 4, title: 'Top rated first', value: SortingOptionValue.TopRated },
 ] as const;
 
+const AUTH_TOKEN_KEY = 'six-cities-token';
+
+const TIMEOUT_SHOW_ERROR = 2000;
+
 export {
   AppRoute,
   AuthorizationStatus,
@@ -56,4 +66,7 @@ export {
   URL_MARKER_CURRENT,
   SortingOptionValue,
   SORTING_OPTIONS,
+  AUTH_TOKEN_KEY,
+  APIRoute,
+  TIMEOUT_SHOW_ERROR,
 };

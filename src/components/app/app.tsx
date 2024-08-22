@@ -8,8 +8,19 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundScreen from '../not-found-screen/NotFoundScreen';
+import { useAppSelector } from '../../hook';
+import SpinnerLoader from '../rotating-loader/spinner-loader';
 
 function App(): JSX.Element {
+  const isOfferDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.isAuthorized);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOfferDataLoading) {
+    return (
+      <SpinnerLoader />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>

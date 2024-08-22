@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Header from '../../components/header/header';
-import CommentList from '../../components/offer/offer-comments/comments-list';
+import CommentList from '../../components/comments/comments-list';
 import Map from '../../components/map/map';
 import OfferList from '../../components/offer/offer-list';
 
@@ -11,7 +11,7 @@ import { AppRoute } from '../../const';
 import { Offer } from '../../types/offer-types/offer-list-types';
 
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { setOfferComments, setOfferPages } from '../../store/action';
+import { loadOfferComments, loadOfferPages } from '../../store/action';
 
 import { offerPage, offerComments } from '../../mocks/offer-page';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
@@ -26,8 +26,8 @@ function OfferPage(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
 
   useEffect(() => {
-    dispatch(setOfferPages(offerPage));
-    dispatch(setOfferComments(offerComments));
+    dispatch(loadOfferPages(offerPage));
+    dispatch(loadOfferComments(offerComments));
   }, [dispatch]);
 
   if (!offer) {
