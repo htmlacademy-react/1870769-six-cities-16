@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import Header from '../../components/header/header';
 import CommentList from '../../components/comments/comments-list';
@@ -11,30 +11,46 @@ import { AppRoute } from '../../const';
 import { Offer } from '../../types/offer-types/offer-list-types';
 
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { loadOfferComments, loadOfferPages } from '../../store/action';
 
-import { offerPage, offerComments } from '../../mocks/offer-page';
+import { fetchCommetsAction, fetchNearOffersAction, fetchOfferByIdAction } from '../../store/api-actions';
+
 import FavoriteButton from '../../components/favorite-button/favorite-button';
+import ErrorMessage from '../../components/error-message/error-message';
+
+const MAX_NUMBER_OFFERS = 5;
 
 function OfferPage(): JSX.Element {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const offerPages = useAppSelector((state) => state.offerPages);
+  const offerPages = useAppSelector((state) => state.offerPage);
   const offerPageComments = useAppSelector((state) => state.offerComments);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
 
   const { id } = useParams();
-  const offer = offerPages.find((item) => item.id === id);
   const [activeOffer, setActiveOffer] = useState<Offer | null>(null);
 
   useEffect(() => {
-    dispatch(loadOfferPages(offerPage));
-    dispatch(loadOfferComments(offerComments));
-  }, [dispatch]);
+    const fetchData = async () => {
+      if (id) {
+        try {
+          await dispatch(fetchOfferByIdAction(id));
+          await dispatch(fetchCommetsAction(id));
+          await dispatch(fetchNearOffersAction(id));
+        } catch (error) {
+          navigate('/404');
+        }
+      } else {
+        <ErrorMessage />;
+      }
 
-  if (!offer) {
+    };
+
+    fetchData();
+  }, [dispatch, id, navigate]);
+
+  if (!offerPages) {
     return <div>Offer not found <Link to={AppRoute.Main}>Go back main page</Link></div>;
   }
-
-  const filteredOffers = offerPages.filter((item) => item.city.name === offer.city.name && item.id !== id);
 
   const {
     images,
@@ -49,7 +65,8 @@ function OfferPage(): JSX.Element {
     host,
     description,
     isFavorite,
-  } = offer;
+    city
+  } = offerPages;
 
   const handleOfferHover = (hoveredOffer?: Offer | null) => {
     setActiveOffer(hoveredOffer || null);
@@ -150,7 +167,7 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
 
-          <Map offers={offerPages} activeOffer={activeOffer} city={offer.city} />
+          <Map offers={nearOffers} activeOffer={activeOffer} city={city} />
         </section>
 
         <div className="container">
@@ -159,7 +176,8 @@ function OfferPage(): JSX.Element {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
             <OfferList
-              offers={filteredOffers}
+              offerCardCount={MAX_NUMBER_OFFERS}
+              offers={nearOffers}
               isCitiesNear
               onHover={handleOfferHover}
             />

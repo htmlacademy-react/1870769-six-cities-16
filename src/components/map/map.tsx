@@ -3,10 +3,10 @@ import { useEffect, useRef } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { City, Offer, Offers } from '../../types/offer-types/offer-list-types';
 import useMap from '../../hook/useMap/use-map';
-import { OfferPage, OffersPage } from '../../types/offer-types/offer-page-types';
+import { OfferPage } from '../../types/offer-types/offer-page-types';
 
 type MapTypes = {
-  offers: Offers | OffersPage;
+  offers: Offers;
   activeOffer: Offer | null | OfferPage;
   city: City;
 }

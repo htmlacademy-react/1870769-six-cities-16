@@ -1,10 +1,9 @@
 import { Offer, Offers } from '../../types/offer-types/offer-list-types';
-import { OffersPage } from '../../types/offer-types/offer-page-types';
 import OfferCard from './offer-card';
 import classNames from 'classnames';
 
 type OfferCardProps = {
-  offers: Offers | OffersPage;
+  offers: Offers;
   offerCardCount?: number;
   isCitiesNear?: boolean;
   onHover?: (offer?: Offer | null) => void;
