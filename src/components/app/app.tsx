@@ -13,7 +13,7 @@ import SpinnerLoader from '../rotating-loader/spinner-loader';
 
 function App(): JSX.Element {
   const isOfferDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.isAuthorized);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOfferDataLoading) {
     return (

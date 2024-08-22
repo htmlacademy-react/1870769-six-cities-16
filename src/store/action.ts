@@ -3,6 +3,7 @@ import { CityName, Offers } from '../types/offer-types/offer-list-types';
 import { OfferPage } from '../types/offer-types/offer-page-types';
 import { OfferComments } from '../types/offer-types/offer-comment-types';
 import { AuthorizationStatus, SortingOptionValue } from '../const';
+import { FullUserData } from '../types/user-data';
 
 export const setCityName = createAction<CityName>('offer/setCityName');
 
@@ -32,5 +33,7 @@ export const setFavoriteStatus = createAction<{
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );
+
+export const getUserData = createAction<FullUserData>('user/getUserData');
 
 export const setError = createAction<string | null>('setError');

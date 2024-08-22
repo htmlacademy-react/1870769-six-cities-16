@@ -16,7 +16,7 @@ function FavoriteButton({isFavorite, pageType, offerId}: FavoriteButtonTypes): J
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState(isFavorite);
 
-  const isAuthorized = useAppSelector((state) => state.isAuthorized);
+  const isAuthorized = useAppSelector((state) => state.authorizationStatus);
 
   const buttonClass = classNames([
     'button',

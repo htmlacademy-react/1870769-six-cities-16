@@ -10,6 +10,7 @@ import {
   setError,
   setOffersDataLoadingStatus,
   loadNearOffers,
+  getUserData,
 } from './action';
 
 import { AuthorizationStatus, CITIES, SortingOptionValue } from '../const';
@@ -25,8 +26,10 @@ type initialState = {
   nearOffers: Offers;
   offerComments: OfferComments;
   sortingOption: SortingOptionValue;
-  isAuthorized: AuthorizationStatus;
+  authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
+  userEmail: string | null;
+  userAvatar: string | undefined;
   error: string | null;
 };
 
@@ -37,8 +40,10 @@ const initialState: initialState = {
   nearOffers: [],
   offerComments: [],
   sortingOption: SortingOptionValue.Popular,
-  isAuthorized: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: true,
+  userEmail: null,
+  userAvatar: undefined,
   error: null,
 };
 
@@ -55,6 +60,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferComments, (state, action) => {
       state.offerComments = action.payload;
+    })
+    .addCase(getUserData, (state, action) => {
+      const { email, avatarUrl } = action.payload;
+      state.userAvatar = avatarUrl;
+      state.userEmail = email;
     })
     .addCase(setCityName, (state, action) => {
       state.cityName = action.payload;
@@ -75,7 +85,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isOffersDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
-      state.isAuthorized = action.payload;
+      state.authorizationStatus = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
