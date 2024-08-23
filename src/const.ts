@@ -20,6 +20,7 @@ enum SortingOptionValue {
 
 enum APIRoute {
   Offers = '/offers',
+  Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
 }

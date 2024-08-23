@@ -14,5 +14,3 @@ export interface OfferPage extends Offer {
   images: string[];
   maxAdults: number;
 }
-
-export type OffersPage = OfferPage[];

@@ -9,33 +9,41 @@ import {
   requireAuthorization,
   setError,
   setOffersDataLoadingStatus,
+  loadNearOffers,
+  getUserData,
 } from './action';
 
 import { AuthorizationStatus, CITIES, SortingOptionValue } from '../const';
 
 import { CityName, Offers } from '../types/offer-types/offer-list-types';
-import { OffersPage } from '../types/offer-types/offer-page-types';
+import { OfferPage } from '../types/offer-types/offer-page-types';
 import { OfferComments } from '../types/offer-types/offer-comment-types';
 
 type initialState = {
   cityName: CityName;
   offers: Offers;
-  offerPages: OffersPage;
+  offerPage: OfferPage | null;
+  nearOffers: Offers;
   offerComments: OfferComments;
   sortingOption: SortingOptionValue;
-  isAuthorized: AuthorizationStatus;
+  authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
+  userEmail: string | null;
+  userAvatar: string | undefined;
   error: string | null;
 };
 
 const initialState: initialState = {
   cityName: CITIES[0],
   offers: [],
-  offerPages: [],
+  offerPage: null,
+  nearOffers: [],
   offerComments: [],
   sortingOption: SortingOptionValue.Popular,
-  isAuthorized: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: true,
+  userEmail: null,
+  userAvatar: undefined,
   error: null,
 };
 
@@ -45,10 +53,18 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
     })
     .addCase(loadOfferPages, (state, action) => {
-      state.offerPages = action.payload;
+      state.offerPage = action.payload;
+    })
+    .addCase(loadNearOffers, (state, action) => {
+      state.nearOffers = action.payload;
     })
     .addCase(loadOfferComments, (state, action) => {
       state.offerComments = action.payload;
+    })
+    .addCase(getUserData, (state, action) => {
+      const { email, avatarUrl } = action.payload;
+      state.userAvatar = avatarUrl;
+      state.userEmail = email;
     })
     .addCase(setCityName, (state, action) => {
       state.cityName = action.payload;
@@ -69,7 +85,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isOffersDataLoading = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
-      state.isAuthorized = action.payload;
+      state.authorizationStatus = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;

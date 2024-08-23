@@ -3,3 +3,11 @@ export type UserData = {
   email: string;
   token: string;
 };
+
+export type FullUserData = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+  email: string;
+  token: string;
+};
