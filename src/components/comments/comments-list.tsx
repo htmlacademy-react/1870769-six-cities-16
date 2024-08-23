@@ -1,6 +1,5 @@
 import { OfferComments } from '../../types/offer-types/offer-comment-types';
 import { formatDate } from '../../utils';
-import CommentForm from './comment-form';
 
 type OfferCommentsTypes = {
   comments: OfferComments;
@@ -47,8 +46,6 @@ function CommentList({comments}: OfferCommentsTypes): JSX.Element {
           ))
         }
       </ul>
-
-      <CommentForm />
     </section>
   );
 }
