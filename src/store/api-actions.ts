@@ -88,6 +88,26 @@ export const fetchCommetsAction = createAsyncThunk<
   dispatch(loadOfferComments(data));
 });
 
+export const sendCommentsAction = createAsyncThunk<
+  void,
+  {
+    id: string;
+    comment: string;
+    rating: number;
+  },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('sendComments', async ({ id, comment, rating }, { dispatch, extra: api }) => {
+  await api.post(`${APIRoute.Comments}/${id}`, {
+    comment,
+    rating,
+  });
+  dispatch(fetchCommetsAction(id));
+});
+
 export const checkAuthAction = createAsyncThunk<
   void,
   undefined,

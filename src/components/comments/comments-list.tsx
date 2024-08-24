@@ -1,19 +1,24 @@
 import { OfferComments } from '../../types/offer-types/offer-comment-types';
 import { formatDate } from '../../utils';
-import CommentForm from './comment-form';
+
+const MAX_DISPLAYED_COMMENTS = 10;
+const MIN_DISPLAYED_COMMENTS = 0;
 
 type OfferCommentsTypes = {
   comments: OfferComments;
 }
 
 function CommentList({comments}: OfferCommentsTypes): JSX.Element {
+  const sortedComments = [...comments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const displayedComments = sortedComments.slice(MIN_DISPLAYED_COMMENTS, MAX_DISPLAYED_COMMENTS);
+
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
 
       <ul className="reviews__list">
         {
-          comments.map(({id, user, rating, comment, date}) => (
+          displayedComments.map(({id, user, rating, comment, date}) => (
             <li className="reviews__item" key={id}>
               <div className="reviews__user user">
                 <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -47,8 +52,6 @@ function CommentList({comments}: OfferCommentsTypes): JSX.Element {
           ))
         }
       </ul>
-
-      <CommentForm />
     </section>
   );
 }

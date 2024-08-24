@@ -16,6 +16,7 @@ import { fetchCommetsAction, fetchNearOffersAction, fetchOfferByIdAction } from 
 
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 import ErrorMessage from '../../components/error-message/error-message';
+import CommentForm from '../../components/comments/comment-form';
 
 const MAX_NUMBER_OFFERS = 5;
 
@@ -164,6 +165,7 @@ function OfferPage(): JSX.Element {
               </div>
 
               <CommentList comments={offerPageComments} />
+              <CommentForm id={id} />
             </div>
           </div>
 
